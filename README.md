@@ -909,8 +909,8 @@ npm run dev
 
 ## 📧 문의
 
-개발자: [Your Name]
-이메일: [your-email@example.com]
+개발자: [boam79]
+이메일: [ckadltmfxhrxhrxhr@gmail.com]
 
 ---
 
