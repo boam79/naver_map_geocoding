@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "app/api/process/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/status/[jobId]/route.ts": {
+      "maxDuration": 60
+    }
+  },
+  "env": {
+    "VERCEL": "true"
+  }
+}
+

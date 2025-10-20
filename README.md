@@ -141,12 +141,12 @@ npm install
 
 ```env
 # 네이버 지오코딩 API 설정 (서버 사이드)
-NAVER_CLIENT_ID=your_client_id_here
-NAVER_CLIENT_SECRET=your_client_secret_here
+NAVER_CLIENT_ID=your_naver_client_id
+NAVER_CLIENT_SECRET=your_naver_client_secret
 NAVER_GEOCODING_URL=https://maps.apigw.ntruss.com/map-geocode/v2/geocode
 
 # 네이버 맵 JavaScript API 설정 (클라이언트 사이드)
-NEXT_PUBLIC_NAVER_MAP_CLIENT_ID=your_client_id_here
+NEXT_PUBLIC_NAVER_MAP_CLIENT_ID=your_naver_client_id
 
 # 성능 설정
 API_RATE_LIMIT=200         # 초당 API 호출 제한
@@ -198,6 +198,55 @@ npm run build
 # 프로덕션 서버 실행
 npm start
 ```
+
+### 7. Vercel 배포 (선택사항)
+
+#### A. Vercel 계정 연결
+```bash
+# Vercel CLI 설치
+npm install -g vercel
+
+# Vercel 로그인
+vercel login
+
+# 프로젝트 배포
+vercel
+```
+
+#### B. Vercel 대시보드에서 환경 변수 설정
+1. [Vercel Dashboard](https://vercel.com/dashboard) 접속
+2. 프로젝트 선택 → **Settings** → **Environment Variables**
+3. 다음 환경 변수 추가:
+   ```
+   NAVER_CLIENT_ID=your_naver_client_id
+   NAVER_CLIENT_SECRET=your_naver_client_secret
+   NEXT_PUBLIC_NAVER_MAP_CLIENT_ID=your_naver_client_id
+   NAVER_GEOCODING_URL=https://maps.apigw.ntruss.com/map-geocode/v2/geocode
+   API_RATE_LIMIT=200
+   BATCH_SIZE=600
+   CONCURRENCY=80
+   RETRY_MAX=3
+   RETRY_BACKOFF_BASE=1
+   CHECKPOINT_INTERVAL=100
+   ```
+
+#### C. 네이버 클라우드 플랫폼 도메인 등록
+1. [NAVER Cloud Platform 콘솔](https://console.ncloud.com/) 접속
+2. **Application Maps** → **서비스 환경 등록**
+3. **Web 서비스 URL**에 Vercel 도메인 추가:
+   ```
+   https://your-app.vercel.app
+   ```
+
+#### D. 배포 완료
+- Vercel이 자동으로 빌드 및 배포
+- 배포 URL: `https://your-app.vercel.app`
+
+⚠️ **주의사항**:
+- Vercel 무료 플랜은 함수 실행 시간이 10초로 제한됩니다.
+- Pro 플랜($20/월)은 최대 300초(5분)까지 가능합니다.
+- 대용량 데이터 처리 시 타임아웃이 발생할 수 있습니다.
+- 파일은 `/tmp`에 임시 저장되며, 장기 저장이 필요하면 Vercel Blob Storage 사용을 권장합니다.
 
 ### 7. 샘플 데이터 생성 (선택사항)
 

@@ -4,6 +4,13 @@
 
 import { join } from 'path';
 
-// 환경 변수에서 경로 가져오기
-export const UPLOAD_DIR = process.env.UPLOAD_DIR || join(process.cwd(), 'public', 'uploads');
-export const OUTPUT_DIR = process.env.OUTPUT_DIR || join(process.cwd(), 'public', 'outputs');
+// Vercel 환경에서는 /tmp 사용, 로컬에서는 public 폴더 사용
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL === 'true';
+
+export const UPLOAD_DIR = isVercel 
+  ? '/tmp/uploads' 
+  : (process.env.UPLOAD_DIR || join(process.cwd(), 'public', 'uploads'));
+
+export const OUTPUT_DIR = isVercel 
+  ? '/tmp/outputs' 
+  : (process.env.OUTPUT_DIR || join(process.cwd(), 'public', 'outputs'));
